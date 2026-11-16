@@ -42,7 +42,8 @@ const createPost = async (req, res, next) => {
 
       
       const currentUser = await User.findById(req.user.id);
-      const userPostCount = currentUser.posts + 1;
+      //update code
+      const userPostCount = (currentUser.posts || 0) + 1;
       await User.findByIdAndUpdate(req.user.id, { posts: userPostCount });
 
       res.status(201).json(newPost);
